@@ -76,6 +76,31 @@ header h1 {
     h2 {
       color: #ffffff;
     }
+
+    @media (max-width: 700px) {
+  header h1 {
+    font-size: 48px;
+  }
+  header p {
+    font-size: 18px;
+  }
+  section {
+    padding: 10px 5px;
+    max-width: 98vw;
+  }
+  .services {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .service-box {
+    width: 100%;
+    padding: 10px;
+  }
+  .popup-content {
+    min-width: 90vw;
+    padding: 15px 5px;
+  }
+}
   </style>
 </head>
 
@@ -133,14 +158,14 @@ header h1 {
   </header>
 
   <section>
-    <h2>About Us</h2>
+    <h2>About</h2>
     <p>With over 25 years in luxury home integration, I have programmed, installed, and serviced high-end Crestron and Savant systems for some of the most demanding clients. Now independent, I deliver expert-level service and precision programming to OC & LA without the inflated price tag.</p>
   </section>
 
   <section>
     <h2>What We Do</h2>
       <section>
-        <p>Whether it's servicing an existing set up or new install I've got you covered.</p>
+        <p>Whether it's servicing an existing set up or new install I've got you covered. System not working? I can fix it. Need a new set up? I can do that too. My services include, audio video installs, remote programming, networking, troubleshooting existing systems, setting up smart home devices and more. contact me for a personal quote on scope of work. Also below are some basic services I provide at a flat rate. </p>
       </section>
         <div class="services">
       <div class="service-box">
@@ -173,7 +198,6 @@ header h1 {
           <li>Flat Rate $449.</li>
           <li>AV Equipment in Cabinet/Rack.</li>
           <li>Wire Management.</li>
-          <li>URC, Savant, Crestron.</li>
           <li>One Room, Simple Set Up.</li>
         </ul>
       </div>
