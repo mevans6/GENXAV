@@ -14,10 +14,12 @@ body {
   font-family: 'Arial', sans-serif;
   text-align: center;
   color: #fff;
-  background: url(Theater_3.png) no-repeat center center fixed;
+  /* add a dark mask via a semi-transparent linear-gradient before the image */
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(Theater_3.png) no-repeat center center fixed;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
 }
 
 header {
