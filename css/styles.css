@@ -1,30 +1,446 @@
-/* Keyframes for fade-in animation */
-@keyframes fadeIn {
+/* ========================================
+   GEN X AV - Main Stylesheet
+   Colors: #fff, #b72416, #888, #111
+   Fonts: Black Ops One, Anton, Arial
+   ======================================== */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url('../Theater_6.png') no-repeat center center fixed;
+  background-size: cover;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Links --- */
+a {
+  color: #b72416;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #d42e1e;
+  text-decoration: none;
+}
+
+/* --- Header --- */
+header {
+  padding: 60px 20px 30px;
+  background: transparent;
+}
+
+header h1 {
+  font-size: 112px;
+  color: #fff;
+  margin: 0;
+  font-family: 'Black Ops One', 'Impact', sans-serif;
+  letter-spacing: 4px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  animation: fadeInDown 1s ease-out;
+}
+
+header .tagline {
+  font-size: 32px;
+  margin: 15px 0 0;
+  font-family: 'Anton', 'Arial', sans-serif;
+  letter-spacing: 6px;
+  color: rgba(255, 255, 255, 0.85);
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+/* --- Sections --- */
+section {
+  padding: 25px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+section h2 {
+  font-family: 'Anton', 'Arial', sans-serif;
+  font-size: 32px;
+  color: #fff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: #b72416;
+  margin: 0 auto 18px;
+  border: none;
+}
+
+section p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- About --- */
+.about-section .experience-badge {
+  display: inline-block;
+  font-family: 'Anton', 'Arial', sans-serif;
+  font-size: 48px;
+  color: #b72416;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.about-section .experience-label {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 25px;
+}
+
+/* --- Services Grid --- */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.service-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.service-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(183, 36, 22, 0.4);
+}
+
+.service-box .service-icon {
+  display: block;
+  margin: 0 auto 12px;
+  width: 36px;
+  height: 36px;
+}
+
+.service-box .service-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.service-box h3 {
+  font-family: 'Anton', 'Arial', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.service-box p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --- Brands --- */
+.brands-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.brand-logo {
+  height: 35px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.brand-logo--sm {
+  height: 22px;
+}
+
+.brand-logo:hover {
+  opacity: 1;
+}
+
+.brand-logo--dark-bg {
+  filter: none;
+  mix-blend-mode: lighten;
+  opacity: 0.7;
+}
+
+.brand-logo--dark-bg:hover {
+  opacity: 1;
+}
+
+/* --- CTA Button --- */
+.cta-button {
+  display: inline-block;
+  font-family: 'Anton', 'Arial', sans-serif;
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #fff;
+  background: #b72416;
+  padding: 16px 40px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin: 10px 8px;
+}
+
+.cta-button:hover {
+  background: #d42e1e;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.cta-button.outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.cta-button.outline:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* --- Contact --- */
+.contact-methods {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.contact-item {
+  text-align: center;
+}
+
+.contact-item .contact-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+}
+
+.contact-item a {
+  font-family: 'Anton', 'Arial', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: #b72416;
+}
+
+.contact-cta {
+  margin-top: 18px;
+}
+
+.contact-cta .cta-button {
+  margin: 0;
+}
+
+/* --- Footer --- */
+footer {
+  padding: 40px 20px;
+  font-size: 13px;
+  color: #888;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 20px;
+}
+
+footer a {
+  color: #b72416;
+}
+
+footer a:hover {
+  color: #d42e1e;
+}
+
+/* --- Animations --- */
+@keyframes fadeInDown {
   from {
     opacity: 0;
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Popup Overlay */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Scroll Reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Responsive --- */
+@media (max-width: 700px) {
+  header {
+    padding: 40px 15px 20px;
+  }
+
+  header h1 {
+    font-size: 48px;
+    letter-spacing: 2px;
+  }
+
+  header .tagline {
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
+
+  section {
+    padding: 20px 15px;
+  }
+
+  section h2 {
+    font-size: 24px;
+  }
+
+  .services {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .service-box {
+    padding: 20px 12px;
+  }
+
+  .service-box .service-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .service-box h3 {
+    font-size: 14px;
+  }
+
+  .service-box p {
+    font-size: 12px;
+  }
+
+  .brands-grid {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .brand-logo {
+    height: 24px;
+  }
+
+  .brand-logo--sm {
+    height: 16px;
+  }
+
+  .cta-button {
+    font-size: 15px;
+    padding: 14px 30px;
+    display: block;
+    margin: 10px 20px;
+  }
+
+  .contact-methods {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .contact-item a {
+    font-size: 18px;
+  }
+
+  .about-section .experience-badge {
+    font-size: 36px;
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 400px) {
+  .services {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Popup (preserved for future use) --- */
 .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-  display: none; /* Hidden by default */
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  opacity: 0; /* Start with opacity 0 */
-  animation: fadeIn 1s forwards; /* Apply fade-in animation */
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
-/* Popup Content Box */
 .popup-content {
   background: #fff;
   color: #333;
@@ -38,7 +454,6 @@
   transition: opacity 0.9s ease;
 }
 
-/* Close Button */
 .popup-close {
   position: absolute;
   top: 15px;
@@ -49,7 +464,6 @@
   cursor: pointer;
 }
 
-/* Email Input Field */
 #email-input {
   width: 100%;
   padding: 10px;
@@ -58,7 +472,6 @@
   border-radius: 5px;
 }
 
-/* Submit Button */
 .popup-submit {
   background-color: #b72416;
   color: white;
