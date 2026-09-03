@@ -9,3 +9,4 @@
 .service-grid article::before { content: ""; display: block; height: 1px; margin-bottom: 18px; background: var(--accent); }
 .steps li, .steps li:first-child { border-top: 2px solid var(--accent); }
 .steps span, .steps li:first-child span { color: var(--accent); }
+.icon-button.call svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.75; }
