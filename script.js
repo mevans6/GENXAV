@@ -1,0 +1,10 @@
+const menuButton=document.querySelector('#menu-button'),mobileMenu=document.querySelector('#mobile-menu');
+const closeMenu=()=>{if(!menuButton)return;menuButton.setAttribute('aria-expanded','false');mobileMenu.hidden=true};
+menuButton?.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')==='true';menuButton.setAttribute('aria-expanded',String(!open));mobileMenu.hidden=open});
+mobileMenu?.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
+matchMedia('(min-width:1081px)').addEventListener('change',event=>{if(event.matches)closeMenu()});
+document.querySelectorAll('.preset').forEach(link=>link.addEventListener('click',()=>{const radio=document.querySelector(`input[name="role"][value="${link.dataset.role}"]`);if(radio)radio.checked=true}));
+const form=document.querySelector('#intake-form'),error=document.querySelector('#form-error'),formPanel=document.querySelector('#form-panel'),successPanel=document.querySelector('#success-panel');
+form?.addEventListener('submit',event=>{event.preventDefault();const data=new FormData(form),issues=[];if(!data.get('name')?.trim())issues.push('name');if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.get('email')||''))issues.push('a valid email address');if(!data.get('phone')?.trim())issues.push('phone');if((data.get('description')||'').trim().length<12)issues.push('a project description of at least 12 characters');if(issues.length){error.textContent=`Please add ${issues.join(', ')}.`;error.hidden=false;return}error.hidden=true;formPanel.hidden=true;successPanel.hidden=false;successPanel.focus()});
+document.querySelector('#send-another')?.addEventListener('click',()=>{form.reset();successPanel.hidden=true;formPanel.hidden=false;form.querySelector('input')?.focus()});
+document.querySelector('#year').textContent=new Date().getFullYear();
