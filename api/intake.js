@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+
 const recipient = 'matt@genxav.com';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -42,9 +44,10 @@ export default async function handler(req, res) {
   if (!domain || !apiKey) return res.status(503).json({ error: 'Email delivery is not configured.' });
 
   const html = `<div style="font-family:Arial,sans-serif;color:#111827"><h2>New Gen X AV project intake</h2><table style="border-collapse:collapse">${textRow('Name', name)}${textRow('Company', company)}${textRow('Email', email)}${textRow('Phone', phone)}${textRow('Customer type', role)}${textRow('System / platform', platform)}${textRow('Timeline', timeline)}${textRow('Project description', description)}</table></div>`;
+  const idempotencyKey = `intake/${createHash('sha256').update([name, email, phone, role, platform, timeline, description].join('|')).digest('hex')}`;
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'Idempotency-Key': idempotencyKey },
     body: JSON.stringify({
       from: `Gen X AV Intake <intake@${domain}>`, to: [recipient], reply_to: email,
       subject: `New intake: ${name.replace(/[\r\n]/g, ' ')}`, html
