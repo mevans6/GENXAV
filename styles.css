@@ -11,3 +11,4 @@
 .steps span, .steps li:first-child span { color: var(--accent); }
 .icon-button.call svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.75; }
 .contact-icon { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--accent); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.75; }
+@media (max-width: 1080px) { .hero .signal { display: none; } }
