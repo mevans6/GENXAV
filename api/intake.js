@@ -28,7 +28,6 @@ export default async function handler(req, res) {
   const company = value(body.company, 160);
   const email = value(body.email, 254).toLowerCase();
   const phone = value(body.phone, 80);
-  const role = value(body.role, 80);
   const platform = value(body.platform, 160);
   const timeline = value(body.timeline, 80);
   const description = value(body.description, 4000);
@@ -43,8 +42,8 @@ export default async function handler(req, res) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!domain || !apiKey) return res.status(503).json({ error: 'Email delivery is not configured.' });
 
-  const html = `<div style="font-family:Arial,sans-serif;color:#111827"><h2>New Gen X AV project intake</h2><table style="border-collapse:collapse">${textRow('Name', name)}${textRow('Company', company)}${textRow('Email', email)}${textRow('Phone', phone)}${textRow('Customer type', role)}${textRow('System / platform', platform)}${textRow('Timeline', timeline)}${textRow('Project description', description)}</table></div>`;
-  const idempotencyKey = `intake/${createHash('sha256').update([name, email, phone, role, platform, timeline, description].join('|')).digest('hex')}`;
+  const html = `<div style="font-family:Arial,sans-serif;color:#111827"><h2>New Gen X AV project intake</h2><table style="border-collapse:collapse">${textRow('Name', name)}${textRow('Company', company)}${textRow('Email', email)}${textRow('Phone', phone)}${textRow('System / platform', platform)}${textRow('Timeline', timeline)}${textRow('Project description', description)}</table></div>`;
+  const idempotencyKey = `intake/${createHash('sha256').update([name, email, phone, platform, timeline, description].join('|')).digest('hex')}`;
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'Idempotency-Key': idempotencyKey },
