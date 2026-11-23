@@ -1,0 +1,21 @@
+.consulting-title{max-width:26ch!important;font-size:clamp(38px,5vw,70px)!important}.consulting-services{grid-template-columns:repeat(2,minmax(0,1fr))}.consulting-process{padding-left:22px}.consulting-process li{margin-bottom:22px}.hero-actions{align-items:center}.support-layout{display:grid;grid-template-columns:2fr 1fr;gap:32px;margin-top:32px}.form-panel,.support-summary,.consulting-admin{background:var(--surface);padding:28px;border:1px solid var(--line);border-radius:8px;margin:24px 0}.form-field label,label{font-size:14px}.check-label{display:flex;gap:12px;align-items:flex-start;text-transform:none;letter-spacing:normal;font-size:14px}.check-label input{width:20px;min-height:20px;flex:none}.intake-honeypot{position:absolute;left:-9999px}.error{color:#ffb4a8}.notice,.success{padding:16px;border:1px solid var(--accent);margin:16px 0}.subtle-button{background:transparent;color:var(--accent-light);border:1px solid var(--line);padding:8px 14px;border-radius:6px}.consulting-admin button{margin:6px}.consulting-admin pre,pre{white-space:pre-wrap;overflow-wrap:anywhere}.consulting-admin table{width:100%;border-collapse:collapse}.consulting-admin td,.consulting-admin th{padding:10px;text-align:left;border-bottom:1px solid var(--line)}.consulting-admin{overflow-x:auto}.consulting-admin textarea{min-height:120px}.consulting-admin svg,.notice svg{width:24px;height:24px}.policy{max-width:900px}.policy h1{font:600 48px var(--heading);text-transform:uppercase}.policy h2{font-size:28px;margin-top:36px}.support-summary{align-self:start}button:disabled{opacity:.55;cursor:wait}.intake-files{padding-left:18px}.intake-files li{margin:12px 0;overflow-wrap:anywhere}.intake-files button{margin-left:12px}.photo-gallery img{max-width:100%;height:auto}.admin-layout,.support-layout{min-width:0}@media(max-width:760px){.support-layout,.consulting-services{grid-template-columns:1fr}.form-panel,.consulting-admin{padding:20px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Share label and input rows so wrapped labels keep both columns aligned. */
+.support-layout .form-panel .form-field { margin-bottom: 24px; }
+.support-layout .form-panel .form-field > label { margin: 0 0 8px; }
+.support-layout .form-panel .form-field > input,
+.support-layout .form-panel .form-field > select,
+.support-layout .form-panel .form-field > textarea { margin-top: 0; }
+.support-layout .form-grid { align-items: stretch; row-gap: 8px; margin-bottom: 24px; }
+.support-layout .form-grid > .form-field {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+  margin-bottom: 0;
+}
+.support-layout .form-grid > .form-field > label { margin: 0; }
+@media (max-width: 760px) {
+  .support-layout .form-grid { display: block; margin-bottom: 0; }
+  .support-layout .form-grid > .form-field { display: block; margin-bottom: 24px; }
+  .support-layout .form-grid > .form-field > label { margin-bottom: 8px; }
+}

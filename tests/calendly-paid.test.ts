@@ -1,0 +1,10 @@
+import {beforeEach,afterEach,it,expect,vi} from 'vitest';
+import {assertConsultationEvent,createConsultationLink} from '../server/lib/calendly';
+const fetchMock=vi.fn();const paid='https://api.calendly.com/event_types/paid';
+beforeEach(()=>{process.env.CALENDLY_API_TOKEN='test-token';vi.stubGlobal('fetch',fetchMock);fetchMock.mockReset()});
+afterEach(()=>vi.unstubAllGlobals());
+it('requires Zoom for a new paid consultation event',async()=>{fetchMock.mockResolvedValue(Response.json({resource:{uri:paid,active:true,duration:30,locations:[{kind:'phone_call'}]}}));await expect(assertConsultationEvent(paid,true)).rejects.toThrow('meeting location')});
+it('creates a one-use link using the selected paid event and Calendly Zoom location kind',async()=>{fetchMock.mockResolvedValueOnce(Response.json({resource:{uri:paid,active:true,duration:30,locations:[null,{kind:'zoom_conference'}]}})).mockResolvedValueOnce(Response.json({resource:{owner:paid,owner_type:'EventType',booking_url:'https://calendly.com/d/paid-once'}}));expect(await createConsultationLink(paid,true)).toBe('https://calendly.com/d/paid-once');expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toEqual({max_event_count:1,owner:paid,owner_type:'EventType'})});
+it('does not accept a public scheduling URL in place of an API event URI',async()=>{await expect(assertConsultationEvent('https://calendly.com/host/paid',true)).rejects.toThrow('correctly');expect(fetchMock).not.toHaveBeenCalled()});
+it('rejects a Calendly paywall for schedule-first bookings to prevent charging twice',async()=>{fetchMock.mockResolvedValue(Response.json({resource:{uri:paid,active:true,duration:30,is_paid:true,locations:[{kind:'zoom_conference'}]}}));await expect(assertConsultationEvent(paid,true,true)).rejects.toThrow('active 30-minute');expect(fetchMock).toHaveBeenCalledTimes(1)});
+it('accepts a free Zoom event for separate Stripe billing',async()=>{fetchMock.mockResolvedValue(Response.json({resource:{uri:paid,active:true,duration:30,is_paid:false,locations:[{kind:'zoom_conference'}]}}));await expect(assertConsultationEvent(paid,true,true)).resolves.toBeUndefined()});

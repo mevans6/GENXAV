@@ -1,3 +1,11 @@
 .vercel
 .env*
+.env.local
 Previous-Versions/
+node_modules/
+dist/
+server/router.ts
+work/
+server/build/
+supabase/.temp/
+!.env.example

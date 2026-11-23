@@ -1,0 +1,11 @@
+import {createElement} from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+import {it,expect} from 'vitest';
+import {ReservationStatus} from '../client/consultation-invitation';
+const base={appointment_status:'scheduled',payment_status:'unpaid',starts_at:'2030-12-01T17:00:00Z',payment_due_at:'2030-11-29T17:00:00Z',timezone:'America/New_York',checkout_url:'https://checkout.stripe.com/c/pay/test'};
+const render=(change:Partial<typeof base>={})=>renderToStaticMarkup(createElement(ReservationStatus,{reservation:{...base,...change}}));
+it('shows conditional reservation, exact time zone and payment action for unpaid customers',()=>{const html=render();expect(html).toContain('Payment required to retain');expect(html).toContain('America/New_York');expect(html).toContain('Pay $99 to retain appointment')});
+it.each(['paid','processing','review','refunded'])('never offers a second payment for %s',payment_status=>{const html=render({payment_status,checkout_url:null as any});expect(html).not.toContain('Pay $99 to retain appointment');if(payment_status==='paid')expect(html).toContain('Consultation confirmed')});
+it('shows cancellation in progress without asking for an expired payment',()=>{const html=render({appointment_status:'canceling',checkout_url:null as any});expect(html).toContain('Cancellation in progress');expect(html).toContain('Do not pay through an old link');expect(html).not.toContain('Pay $99 to retain appointment')});
+it('retains the paid message during rescheduling',()=>{const html=render({appointment_status:'rescheduling',payment_status:'paid',checkout_url:null as any});expect(html).toContain('no new payment is needed');expect(html).not.toContain('Pay $99 by')});
+it('handles an invalid provider time zone without crashing the private page',()=>{expect(render({timezone:'invalid/zone'})).toContain('(UTC)')});
