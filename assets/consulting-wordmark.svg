@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1104 100" role="img" aria-label="Consulting">
+  <defs><linearGradient id="silver" gradientUnits="userSpaceOnUse" x1="0" y1="10" x2="0" y2="90"><stop offset="0" stop-color="#fff"/><stop offset=".48" stop-color="#f1f1f1"/><stop offset=".6" stop-color="#b6b6b6"/><stop offset="1" stop-color="#e9e9e9"/></linearGradient></defs>
+  <g fill="none" stroke="url(#silver)" stroke-width="16" stroke-linejoin="miter" stroke-linecap="square">
+    <path transform="translate(0 0)" d="M92 18H28Q8 18 8 38V62Q8 82 28 82H92"/>
+    <path transform="translate(122 0)" d="M28 18H72Q92 18 92 38V62Q92 82 72 82H28Q8 82 8 62V38Q8 18 28 18Z"/>
+    <path transform="translate(244 0)" d="M8 82V18L92 82V18"/>
+    <path transform="translate(366 0)" d="M92 18H28Q8 18 8 34Q8 50 28 50H72Q92 50 92 66Q92 82 72 82H8"/>
+    <path transform="translate(488 0)" d="M8 18V62Q8 82 28 82H72Q92 82 92 62V18"/>
+    <path transform="translate(610 0)" d="M8 18V82H82"/>
+    <path transform="translate(722 0)" d="M0 18H100M50 18V82"/>
+    <path transform="translate(844 0)" d="M8 18V82"/>
+    <path transform="translate(882 0)" d="M8 82V18L92 82V18"/>
+    <path transform="translate(1004 0)" d="M92 18H28Q8 18 8 38V62Q8 82 28 82H92V50H54"/>
+  </g>
+</svg>

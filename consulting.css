@@ -19,3 +19,13 @@
   .support-layout .form-grid > .form-field { display: block; margin-bottom: 24px; }
   .support-layout .form-grid > .form-field > label { margin-bottom: 8px; }
 }
+
+/* Extend the existing logo with matching geometric consulting lettering. */
+.site-header .consulting-brand { gap: 2px; min-width: 0; }
+.site-header .consulting-brand .consulting-wordmark { width: 200px; height: auto; object-fit: contain; }
+@media (max-width: 600px) {
+  .site-header .header-inner { gap: 12px; }
+  .site-header .consulting-brand > img:first-child { width: clamp(80px, 25vw, 150px); }
+  .site-header .consulting-brand .consulting-wordmark { width: clamp(88px, 28vw, 168px); }
+  .site-header .mobile-actions { flex-shrink: 0; }
+}
