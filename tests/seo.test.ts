@@ -13,7 +13,7 @@ const robots = (html: string) => html.match(/<meta name="robots" content="([^"]+
 const get = (path: string) => fetch(base + path);
 
 describe('public crawl and contact contract over HTTP', () => {
-  it.each(['/', '/consulting', '/privacy.html'])('%s is indexable and self canonical', async path => {
+  it.each(['/', '/consulting', '/privacy.html', '/home-automation-troubleshooting-charlotte', '/consulting/av-proposal-review'])('%s is indexable and self canonical', async path => {
     const response = await get(path), html = await response.text();
     expect(response.status).toBe(200);
     expect(response.headers.get('x-robots-tag') || '').not.toMatch(/noindex/i);
@@ -34,7 +34,7 @@ describe('public crawl and contact contract over HTTP', () => {
     expect(canonical(html)).toBeUndefined();
     if (path.startsWith('/consulting/')) expect(response.headers.get('x-robots-tag')).toMatch(/noindex/i);
   });
-  it.each([['/index.html', '/'], ['/consulting.html', '/consulting'], ['/consulting-terms.html', '/consulting/terms'], ['/consulting-refunds.html', '/consulting/refunds']])('%s permanently redirects without a loop', async (from, to) => {
+  it.each([['/index.html', '/'], ['/consulting.html', '/consulting'], ['/consulting-terms.html', '/consulting/terms'], ['/consulting-refunds.html', '/consulting/refunds'], ['/home-automation-troubleshooting-charlotte.html', '/home-automation-troubleshooting-charlotte'], ['/consulting-av-proposal-review.html', '/consulting/av-proposal-review']])('%s permanently redirects without a loop', async (from, to) => {
     const first = await fetch(base + from + '?source=check', {redirect:'manual'});
     expect(first.status).toBe(308);
     expect(first.headers.get('location')).toBe(to + '?source=check');
@@ -49,7 +49,7 @@ describe('public crawl and contact contract over HTTP', () => {
     const sitemap = await get('/sitemap.xml');
     expect(sitemap.status).toBe(200);
     const urls = [...(await sitemap.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
-    expect(urls).toEqual(['https://genxav.com/', 'https://genxav.com/consulting', 'https://genxav.com/privacy.html']);
+    expect(urls).toEqual(['https://genxav.com/', 'https://genxav.com/consulting', 'https://genxav.com/privacy.html', 'https://genxav.com/home-automation-troubleshooting-charlotte', 'https://genxav.com/consulting/av-proposal-review']);
     for (const url of urls) {
       const page = await get(new URL(url).pathname), html = await page.text();
       expect(page.status).toBe(200);
@@ -71,6 +71,28 @@ describe('public crawl and contact contract over HTTP', () => {
         expect(call[1] + call[3]).toContain('(714) 312-6729');
       }
     }
+  });
+  it.each([
+    ['/home-automation-troubleshooting-charlotte', '/', '+17042477074'],
+    ['/consulting/av-proposal-review', '/consulting', '+17143126729'],
+  ])('%s is a real service page with contextual links and matching schema', async (path, parent, phone) => {
+    const html = await (await get(path)).text();
+    expect(html).toContain('<h1');
+    expect(html).not.toContain('consulting-app.js');
+    expect(html).not.toContain('<form');
+    const schema = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)![1]);
+    expect(schema['@type']).toBe('Service');
+    expect(schema.url).toBe('https://genxav.com' + path);
+    expect(schema.provider.telephone).toBe(phone);
+    expect(schema.offers).toBeUndefined(); // No flat $99 offer for a custom-quoted detailed review.
+    const phones = [...html.matchAll(/href="tel:([^"]+)"/g)].map(m => m[1]);
+    expect(phones.length).toBeGreaterThan(1);
+    expect(phones.every(p => p === phone)).toBe(true);
+    const landing = await (await get(parent)).text();
+    const serviceSection = landing.match(/<section[^>]*id="services"[\s\S]*?<\/section>/)![0];
+    expect(serviceSection).toContain(`href="${path}"`);
+    const menus = landing.match(/<header[\s\S]*?<\/header>/)![0];
+    expect(menus).not.toContain(`href="${path}"`);
   });
   it('matches homepage structured phone contacts to visible service labels', async () => {
     const html = await (await get('/')).text();

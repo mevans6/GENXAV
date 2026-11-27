@@ -20,3 +20,7 @@
   .site-header .header-inner { gap: 12px; }
   .site-header .logo:not(.consulting-brand) img { width: 140px; }
 }
+
+.topic-questions { max-width: 1000px; }
+.topic-questions article { padding: 20px 0; border-top: 1px solid var(--line); }
+.topic-questions h3 { margin-top: 0; }
