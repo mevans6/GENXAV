@@ -29,3 +29,8 @@
   .site-header .consulting-brand .consulting-wordmark { width: clamp(88px, 28vw, 168px); }
   .site-header .mobile-actions { flex-shrink: 0; }
 }
+
+.consulting-faq { max-width: 850px; }
+.consulting-faq article { padding: 20px 0; border-top: 1px solid var(--line); }
+.consulting-faq h3 { margin-top: 0; }
+.consulting-faq p { margin-bottom: 0; }

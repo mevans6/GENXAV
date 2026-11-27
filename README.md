@@ -31,3 +31,7 @@ The chatbot is disabled and no chat endpoint or AI client is included. Older loc
 Consultations reserve time first, then email a separate $99 Stripe checkout, remind at 6/11 hours, and cancel unpaid reservations after a 12-hour deadline. Calendly Free is supported. Runtime keys, signed webhooks, and a five-minute scheduler must be configured and tested before enabling the feature flags. See the integration document for activation and failure handling.
 
 The consulting site and signed webhooks are deployed. Sandbox payment, delivered reminders, unpaid cancellation, and scheduled worker heartbeat passed acceptance; 83 tests pass. Both synthetic calendar appointments were removed. Public paid bookings remain disabled until live Stripe credentials and the live webhook secret are configured and verified. See `docs/CONSULTING-INTEGRATION.md`.
+
+## Crawl and content review
+
+See `docs/VISIBILITY-REVIEW.md` for canonical/indexing rules, phone ownership, verification, and follow-up page scope. The local preview applies the checked-in static redirects and response headers from `vercel.json`; use `PORT=3100 npm run dev` for an alternate port. `tests/seo.test.ts` checks the crawl/contact HTTP contract without provider calls or form submissions.

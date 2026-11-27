@@ -2,12 +2,74 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
-    {"source":"/api/consulting/:path*","destination":"/api/consulting?route=:path*"},
-    {"source":"/consulting","destination":"/consulting.html"},
-    {"source":"/consulting/terms","destination":"/consulting-terms.html"},
-    {"source":"/consulting/refunds","destination":"/consulting-refunds.html"},
-    {"source":"/consulting/:path*","destination":"/consulting-shell.html"}
+    {
+      "source": "/api/consulting/:path*",
+      "destination": "/api/consulting?route=:path*"
+    },
+    {
+      "source": "/consulting",
+      "destination": "/consulting.html"
+    },
+    {
+      "source": "/consulting/terms",
+      "destination": "/consulting-terms.html"
+    },
+    {
+      "source": "/consulting/refunds",
+      "destination": "/consulting-refunds.html"
+    },
+    {
+      "source": "/consulting/:path*",
+      "destination": "/consulting-shell.html"
+    }
   ],
-  "headers": [{"source":"/consulting/:path*","headers":[{"key":"Referrer-Policy","value":"no-referrer"},{"key":"X-Robots-Tag","value":"noindex"}]}],
-  "crons": [{"path":"/api/consulting/maintenance","schedule":"40 3 * * *"}]
+  "headers": [
+    {
+      "source": "/consulting/:path*",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
+    },
+    {
+      "source": "/consulting/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/consulting/maintenance",
+      "schedule": "40 3 * * *"
+    }
+  ],
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/consulting.html",
+      "destination": "/consulting",
+      "permanent": true
+    },
+    {
+      "source": "/consulting-terms.html",
+      "destination": "/consulting/terms",
+      "permanent": true
+    },
+    {
+      "source": "/consulting-refunds.html",
+      "destination": "/consulting/refunds",
+      "permanent": true
+    }
+  ]
 }
