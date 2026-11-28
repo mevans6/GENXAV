@@ -2,12 +2,137 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
-    {"source":"/api/consulting/:path*","destination":"/api/consulting?route=:path*"},
-    {"source":"/consulting","destination":"/consulting.html"},
-    {"source":"/consulting/terms","destination":"/consulting-terms.html"},
-    {"source":"/consulting/refunds","destination":"/consulting-refunds.html"},
-    {"source":"/consulting/:path*","destination":"/consulting-shell.html"}
+    {
+      "source": "/api/consulting/:path*",
+      "destination": "/api/consulting?route=:path*"
+    },
+    {
+      "source": "/home-automation-troubleshooting-charlotte",
+      "destination": "/home-automation-troubleshooting-charlotte.html"
+    },
+    {
+      "source": "/consulting",
+      "destination": "/consulting.html"
+    },
+    {
+      "source": "/consulting/av-proposal-review",
+      "destination": "/consulting-av-proposal-review.html"
+    },
+    {
+      "source": "/consulting/terms",
+      "destination": "/consulting-terms.html"
+    },
+    {
+      "source": "/consulting/refunds",
+      "destination": "/consulting-refunds.html"
+    },
+    {
+      "source": "/consulting/:path*",
+      "destination": "/consulting-shell.html"
+    }
   ],
-  "headers": [{"source":"/consulting/:path*","headers":[{"key":"Referrer-Policy","value":"no-referrer"},{"key":"X-Robots-Tag","value":"noindex"}]}],
-  "crons": [{"path":"/api/consulting/maintenance","schedule":"40 3 * * *"}]
+  "headers": [
+    {
+      "source": "/consulting/:path*",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
+    },
+    {
+      "source": "/consulting/terms",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/consulting/refunds",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/consulting/admin",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/consulting/complete",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/consulting/invitation/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/consulting/ticket/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/consulting/maintenance",
+      "schedule": "40 3 * * *"
+    }
+  ],
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/consulting.html",
+      "destination": "/consulting",
+      "permanent": true
+    },
+    {
+      "source": "/consulting-terms.html",
+      "destination": "/consulting/terms",
+      "permanent": true
+    },
+    {
+      "source": "/consulting-refunds.html",
+      "destination": "/consulting/refunds",
+      "permanent": true
+    },
+    {
+      "source": "/home-automation-troubleshooting-charlotte.html",
+      "destination": "/home-automation-troubleshooting-charlotte",
+      "permanent": true
+    },
+    {
+      "source": "/consulting-av-proposal-review.html",
+      "destination": "/consulting/av-proposal-review",
+      "permanent": true
+    }
+  ]
 }

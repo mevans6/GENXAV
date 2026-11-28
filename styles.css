@@ -12,3 +12,15 @@
 .icon-button.call svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.75; }
 .contact-icon { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--accent); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.75; }
 @media (max-width: 1080px) { .hero .signal { display: none; } }
+
+.phone-label { display: block; color: var(--muted); font-size: 14px; letter-spacing: .03em; }
+.contact-grid .phone-label { margin: 20px 0 0; }
+.contact-grid .phone-label + .contact-method { margin-top: 6px; }
+@media (max-width: 480px) {
+  .site-header .header-inner { gap: 12px; }
+  .site-header .logo:not(.consulting-brand) img { width: 140px; }
+}
+
+.topic-questions { max-width: 1000px; }
+.topic-questions article { padding: 20px 0; border-top: 1px solid var(--line); }
+.topic-questions h3 { margin-top: 0; }
